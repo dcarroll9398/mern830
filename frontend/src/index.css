@@ -9,6 +9,10 @@ body {
 .site-container {
   min-height: 100vh;
 }
+.btn-primary {
+  background-color: #f0c040;
+  color: #000000;
+}
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -27,4 +31,10 @@ body {
 }
 main {
   flex: 1;
+}
+.rating span {
+  color: #ffc000;
+}
+.rating span:last-child {
+  color: #000000;
 }
