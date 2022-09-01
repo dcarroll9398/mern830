@@ -38,3 +38,6 @@ main {
 .rating span:last-child {
   color: #000000;
 }
+.img-large {
+  max-width: 100%;
+}
