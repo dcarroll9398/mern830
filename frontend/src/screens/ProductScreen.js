@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useReducer } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Badge, Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
 import Rating from '../components/Rating';
@@ -23,6 +23,7 @@ const reducer = (state, action) => {
 };
 
 export default function ProductScreen(props) {
+  const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
 
@@ -57,6 +58,7 @@ export default function ProductScreen(props) {
       type: 'CART_ADD_ITEM',
       payload: { ...product, quantity },
     });
+    navigate('/cart');
   };
   return loading ? (
     <LoadingBox>Loading...</LoadingBox>
