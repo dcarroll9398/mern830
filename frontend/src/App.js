@@ -15,6 +15,7 @@ import SignupScreen from './screens/SignupScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
+import OrderHistoryScreen from './screens/OrderHistoryScreen';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -32,49 +33,53 @@ function App() {
       <div className="site-container d-flex flex-column">
         <ToastContainer position="bottom-center" limit={1} />
         <header>
-          <Navbar bg="dark" variant="dark">
+          <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
               <LinkContainer to="/">
                 <Navbar.Brand>amazona</Navbar.Brand>
               </LinkContainer>
-              <Nav className="me-auto">
-                <Link className="nav-link" to="/cart">
-                  Cart
-                  {cart.cartItems.length > 0 && (
-                    <Badge pill bg="danger">
-                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
-                    </Badge>
-                  )}
-                </Link>
-                {userInfo ? (
-                  <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
-                    <LinkContainer to="/profile">
-                      <NavDropdown.Item>User Prodile</NavDropdown.Item>
-                    </LinkContainer>
-                    <LinkContainer to="/orderhistory">
-                      <NavDropdown.Item>Order History</NavDropdown.Item>
-                    </LinkContainer>
-                    <NavDropdown.Divider />
-                    <Link
-                      className="dropdown-item"
-                      to="#signout"
-                      onClick={signoutHandler}
-                    >
-                      Sign Out
-                    </Link>
-                  </NavDropdown>
-                ) : (
-                  <Link className="nav-link" to="/signin">
-                    Sign In
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto w-100 justify-content-end">
+                  <Link className="nav-link" to="/cart">
+                    Cart
+                    {cart.cartItems.length > 0 && (
+                      <Badge pill bg="danger">
+                        {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                      </Badge>
+                    )}
                   </Link>
-                )}
-              </Nav>
+                  {userInfo ? (
+                    <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                      <LinkContainer to="/profile">
+                        <NavDropdown.Item>User Prodile</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/orderhistory">
+                        <NavDropdown.Item>Order History</NavDropdown.Item>
+                      </LinkContainer>
+                      <NavDropdown.Divider />
+                      <Link
+                        className="dropdown-item"
+                        to="#signout"
+                        onClick={signoutHandler}
+                      >
+                        Sign Out
+                      </Link>
+                    </NavDropdown>
+                  ) : (
+                    <Link className="nav-link" to="/signin">
+                      Sign In
+                    </Link>
+                  )}
+                </Nav>
+              </Navbar.Collapse>
             </Container>
           </Navbar>
         </header>
         <main>
           <Container className="mt-3">
             <Routes>
+              <Route path="/orderhistory" element={<OrderHistoryScreen />} />
               <Route path="/order/:id" element={<OrderScreen />} />
               <Route path="/placeorder" element={<PlaceOrderScreen />} />
               <Route path="/payment" element={<PaymentMethodScreen />} />
