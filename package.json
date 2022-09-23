@@ -2,6 +2,9 @@
   "name": "mern830",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "16.14.0"
+  },
   "main": "index.js",
   "scripts": {
     "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
